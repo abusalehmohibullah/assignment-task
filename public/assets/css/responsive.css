@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px) {
+    .row-step2 {
+        flex-direction: column;
+    }
+    .row-step2 .col-1-2 .upload-step1 {
+      width: 60%;
+    }
+    .apply_box form .form_container .form_control .identy-step .select-img {
+        width: 3%;
+    }
+
+
+
+}
+
+
+
+
+
+@media screen and (max-width: 796px) {
+
+}
+
+
+
+
+@media screen and (max-width: 678px) {
+    .card-box h2 {
+        font-size: 19px;
+    }
+    .row-step2 .col-1-2 .upload-step1 {
+        width: 80%;
+    }
+
+}
+
+
+@media screen and (max-width: 540px) {
+    .card-body .row .col-1-3 .count {
+        width: 26px;
+        height: 25px;
+    }
+    .card-body .row .col-1-3 .text {
+        font-size: 12px;
+    }
+    .row-step2 .col-1-2 .upload-step1 {
+        width: 100%;
+    }
+    .row-step2 .col-1-2 .upload-step1 p {
+      font-size: 12.9px;
+    }
+}
+
+
+
+@media screen and (max-width: 420px) {
+
+    .card-body .row .col-1-3 .text {
+        font-size: 10px;
+    }
+    .row-step2 .col-1-2 .upload-step1{
+        flex-direction: column;
+    }
+    .row-step2 .col-1-2 .upload-step1 p {
+        font-size: 13px;
+        margin-top: 0px;
+    }
+    .apply_box .uploaded {
+        margin-top: 40px;
+    }
+    .apply_box form .form_container .form_control .identy-step .select-img {
+        width: 4%;
+    }
+    .apply_box form .next-content .btn-step {
+        padding: 9px 22px;
+    }
+    form .button-step {
+        gap: 15px;
+    }
+    .card-box h2 {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 364px) {
+    .apply_box .content-step {
+        width: 100%;
+        padding: 0px 10px;
+    }
+    .card-body .row .col-1-3 .text {
+        font-size: 9px;
+    }
+
+}
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
