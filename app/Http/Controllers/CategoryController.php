@@ -14,12 +14,53 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Retrieve all categories from the database
-        $categories = Category::all();
+        // Initialize the query builder
+        $query = Category::query();
 
-        // Pass the categories data to the view
+        // Check if the 'is_featured' query parameter is set and filter accordingly
+        if ($request->has('is_featured')) {
+            $query->where('is_featured', $request->input('is_featured'));
+        }
+
+        // Check if the 'status' query parameter is set and filter accordingly
+        if ($request->has('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        // Check if the 'search' query parameter is set and filter based on the search term
+        if ($request->has('search_text')) {
+            $searchTerm = $request->input('search_text');
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('category_name', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Check if the 'sort_by' query parameter is set and apply sorting accordingly
+        if ($request->has('sort_by')) {
+            $sortBy = $request->input('sort_by');
+
+            // Apply sorting based on the selected option
+            switch ($sortBy) {
+                case 'latest':
+                    $query->latest();
+                    break;
+                case 'a-z':
+                    $query->orderBy('id', 'asc');
+                    break;
+                case 'z-a':
+                    $query->orderBy('id', 'desc');
+                    break;
+                default:
+                    // Do nothing for unknown options
+                    break;
+            }
+        }
+
+        // Retrieve categories with subcategory counts based on the filtered query
+        $categories = $query->withCount('subcategories')->get();
+
         return view('admin.pages.course.course_category', compact('categories'));
     }
 
@@ -100,14 +141,6 @@ class CategoryController extends Controller
             // Handle the error
             return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
     }
 
     /**

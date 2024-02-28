@@ -27,13 +27,16 @@
                 <div class="flex-wrap project-top-wrapper d-flex justify-content-between mb-25 mt-n10">
                     <div class="flex-wrap d-flex align-items-center justify-content-center">
                         <div class="mt-10 project-search order-search global-shadow d-flex align-items-center gap-5">
+                            @php
+                            $sort_by = request()->get('sort_by');
+                            @endphp
                             <div class="d-flex align-items-center gap-2">
                                 <p>Id:</p>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected="">All</option>
-                                    <option value="1">Latest</option>
-                                    <option value="2">A-Z</option>
-                                    <option value="3">Z-A</option>
+                                <select onchange="location = this.value;" class="form-select" aria-label="Default select example">
+                                    <option value="?" {{ $sort_by == 'all' ? 'selected' : '' }}>All</option>
+                                    <option value="?sort_by=latest" {{ $sort_by == 'latest' ? 'selected' : '' }}>Latest</option>
+                                    <option value="?sort_by=a-z" {{ $sort_by == 'a-z' ? 'selected' : '' }}>A-Z</option>
+                                    <option value="?sort_by=z-a" {{ $sort_by == 'z-a' ? 'selected' : '' }}>Z-A</option>
                                 </select>
                             </div>
 
@@ -51,9 +54,9 @@
                                     </option>
                                     <option value="?is_featured=1" {{ $is_featured == 1 ? 'selected' : '' }}>
                                         Featured</option>
-                                    <option value="?status=0" {{ $status !== null && $status == 0 && $is_featured == null ? 'selected' : '' }}>
+                                    <option value="?status=pending" {{ $status !== null && $status == 'pending' && $is_featured == null ? 'selected' : '' }}>
                                         Pending</option>
-                                    <option value="?status=1" {{ $status !== null && $status == 1 && $is_featured == null ? 'selected' : '' }}>
+                                    <option value="?status=approved" {{ $status !== null && $status == 'approved' && $is_featured == null ? 'selected' : '' }}>
                                         Approved</option>
                                 </select>
                             </div>
@@ -128,19 +131,19 @@
                                         </td>
                                         <td>
                                             <div class="orderDatatable-status d-inline-block">
-                                                {{ $category->total_sub_category }}
+                                                {{ $category->subcategories_count }}
                                             </div>
                                         </td>
                                         <td>
                                             <div class="orderDatatable-title">
-                                                {{ $category->total_course }}
+                                                -
                                             </div>
                                         </td>
 
                                         <td role="button">
                                             <div class="orderDatatable-status d-inline-block">
                                                 <div class="dm-switch-wrap">
-                                                <div onclick="updateStatus(`{{ route('categories.featured', ['category' => $category->id]) }}`, 'Are you sure?', 'Dou you want to change the featured status of this category?', 'Yes', 'No', event )" class="form-check form-switch form-switch-primary form-switch-sm">
+                                                    <div onclick="updateStatus(`{{ route('categories.featured', ['category' => $category->id]) }}`, 'Are you sure?', 'Dou you want to change the featured status of this category?', 'Yes', 'No', event )" class="form-check form-switch form-switch-primary form-switch-sm">
                                                         <input type="checkbox" class="form-check-input" id="featured-switch-{{ $category->id }}" {{ $category->is_featured == 1 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="featured-switch-{{ $category->id }}"></label>
                                                     </div>

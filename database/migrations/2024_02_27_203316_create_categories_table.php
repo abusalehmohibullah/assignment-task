@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
-            $table->integer('total_sub_category')->default(0);
-            $table->integer('total_course')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->enum('status', ['pending', 'approved'])->default('pending');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

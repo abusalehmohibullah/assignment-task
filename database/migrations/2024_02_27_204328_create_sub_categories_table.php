@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('sub_category_name');
             $table->unsignedBigInteger('category_id');
-            $table->integer('total_course')->default(0);
             $table->enum('status', ['pending', 'approved'])->default('pending');
+            $table->string('image')->nullable();
             $table->timestamps();
 
             // Define foreign key constraint for category_id referencing categories table
