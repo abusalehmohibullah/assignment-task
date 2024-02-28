@@ -190,7 +190,7 @@ class SubCategoryController extends Controller
         // For update operation, update the subCategory model
         $subcategory->category_id = $validatedData['category_id'];
         $subcategory->sub_category_name = $validatedData['sub_category_name'];
-        $message = 'subCategory added successfully!';
+        $message = 'Sub-category updated successfully!';
 
 
         try {

@@ -53,23 +53,30 @@
     <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     {!! Toastr::message() !!}
     @if ($errors->any())
-        <script>
-            @foreach ($errors->all() as $error)
-                toastr.error('{{ $error }}', Error, {
-                    CloseButton: true,
-                    ProgressBar: true
-                });
-            @endforeach
-        </script>
+    <script>
+        @foreach($errors -> all() as $error)
+        toastr.error('{{ $error }}', 'Error', {
+            closeButton: true,
+            progressBar: true
+        });
+        @endforeach
+    </script>
     @endif
+    @if(session()->has('success'))
+    <script>
+        toastr.success(`{{ session('success') }}`, 'Success', {
+                closeButton: true,
+                progressBar: true
+            });
+    </script>
+    @endif
+
     @stack('script')
 </body>
 

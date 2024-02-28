@@ -181,7 +181,7 @@ class CategoryController extends Controller
 
         // For update operation, update the Category model
         $category->category_name = $validatedData['category_name'];
-        $message = 'Category added successfully!';
+        $message = 'Category updated successfully!';
 
 
         try {
