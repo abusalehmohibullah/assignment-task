@@ -1,11 +1,14 @@
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="{{ isset($category) ? route('categories.update', $category->id) : route('categories.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
-    @method('PUT')
+    @if(isset($category))
+        @method('PUT')
+    @endif
+
     <div class="form-group mb-20">
         <label for="name47">{{ trans('course.category-name') }}</label>
-        <input type="text" name="category_name" value="" class="form-control" id="name47"
-            placeholder="Enter Category Name">
+        <input type="text" name="category_name" value="{{ isset($category) ? $category->category_name : old('category_name') }}" class="form-control" id="name47" placeholder="Enter Category Name">
+
     </div>
 
     <div>
@@ -18,7 +21,7 @@
             <!-- Profile picture image-->
             <label for="file-upload">
                 <img class="ap-img__main rounded wh-120 bg-lighter d-flex"
-                    src="{{ asset('assets/img/upload-file-140.png') }}" alt="profile" id="profile-priviewer">
+                    src="{{ isset($category) ? asset('storage/' . $category->image) : asset('assets/img/upload-file-140.png') }}" alt="profile" id="profile-priviewer">
                 <span class="cross" id="remove_pro_pic">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

@@ -11,12 +11,12 @@
             </a>
             <ul style="top: 252.938px; left: 213px;">
                 <li>
-                    <a href="{{ route('category-page') }}" class="active">
+                    <a href="{{ route('categories.index') }}" class="active">
                         Category List
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('subcategory-page') }}" class="">
+                    <a href="{{ route('subcategories.index') }}" class="">
                         Sub Category List
                     </a>
                 </li>
